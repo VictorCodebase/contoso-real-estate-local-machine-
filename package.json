@@ -1,0 +1,45 @@
+{
+  "name": "contoso-real-estate",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "concurrently npm:start:* --kill-others",
+    "start:services": "docker compose up",
+    "start:api": "npm run start --workspace=api",
+    "start:website": "npm run start:swa --workspace=portal",
+    "test": "npm run test -ws --if-present",
+    "build": "npm run build -ws --if-present",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "npm run lint -ws --if-present",
+    "lint:fix": "npm run lint:fix -ws --if-present",
+    "clean": "rimraf \"packages/**/*.tsbuildinfo\"",
+    "clean:install": "rimraf \"packages/**/node_modules\" \"node_modules\" && npm install"
+  },
+  "keywords": [],
+  "author": "Microsoft",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": "18.15.0",
+    "npm": ">=8"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "git-commit-msg-linter": "^4.2.1",
+    "prettier": "^2.7.1",
+    "rimraf": "^4.3.1"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": false,
+    "printWidth": 120,
+    "bracketSpacing": true,
+    "arrowParens": "avoid"
+  }
+}
